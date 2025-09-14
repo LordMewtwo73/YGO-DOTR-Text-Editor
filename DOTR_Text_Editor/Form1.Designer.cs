@@ -32,6 +32,7 @@
 			this.openISOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToISOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importFromCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.lblFilePath = new System.Windows.Forms.Label();
 			this.numIndex = new System.Windows.Forms.NumericUpDown();
 			this.comboCardName = new System.Windows.Forms.ComboBox();
@@ -51,8 +52,8 @@
 			this.numTotalBytes = new System.Windows.Forms.NumericUpDown();
 			this.lblTotalBytes = new System.Windows.Forms.Label();
 			this.lblByteLimit = new System.Windows.Forms.Label();
-			this.importFromCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveFD = new System.Windows.Forms.SaveFileDialog();
+			this.btnClearTutorial = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numIndex)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numTotalBytes)).BeginInit();
@@ -93,6 +94,13 @@
 			this.exportToCSVToolStripMenuItem.Size = new System.Drawing.Size(105, 21);
 			this.exportToCSVToolStripMenuItem.Text = "Export to CSV";
 			this.exportToCSVToolStripMenuItem.Click += new System.EventHandler(this.exportToCSVToolStripMenuItem_Click);
+			// 
+			// importFromCSVToolStripMenuItem
+			// 
+			this.importFromCSVToolStripMenuItem.Name = "importFromCSVToolStripMenuItem";
+			this.importFromCSVToolStripMenuItem.Size = new System.Drawing.Size(124, 21);
+			this.importFromCSVToolStripMenuItem.Text = "Import from CSV";
+			this.importFromCSVToolStripMenuItem.Click += new System.EventHandler(this.importFromCSVToolStripMenuItem_Click);
 			// 
 			// lblFilePath
 			// 
@@ -294,16 +302,21 @@
 			this.lblByteLimit.Text = "/ x";
 			this.lblByteLimit.Visible = false;
 			// 
-			// importFromCSVToolStripMenuItem
-			// 
-			this.importFromCSVToolStripMenuItem.Name = "importFromCSVToolStripMenuItem";
-			this.importFromCSVToolStripMenuItem.Size = new System.Drawing.Size(124, 21);
-			this.importFromCSVToolStripMenuItem.Text = "Import from CSV";
-			this.importFromCSVToolStripMenuItem.Click += new System.EventHandler(this.importFromCSVToolStripMenuItem_Click);
-			// 
 			// saveFD
 			// 
 			this.saveFD.Filter = "CSV File|*.csv";
+			// 
+			// btnClearTutorial
+			// 
+			this.btnClearTutorial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnClearTutorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnClearTutorial.Location = new System.Drawing.Point(446, 30);
+			this.btnClearTutorial.Name = "btnClearTutorial";
+			this.btnClearTutorial.Size = new System.Drawing.Size(91, 38);
+			this.btnClearTutorial.TabIndex = 6;
+			this.btnClearTutorial.Text = "Clear Tutorial Strings";
+			this.btnClearTutorial.UseVisualStyleBackColor = true;
+			this.btnClearTutorial.Click += new System.EventHandler(this.btnClearTutorial_Click);
 			// 
 			// Form1
 			// 
@@ -320,6 +333,7 @@
 			this.Controls.Add(this.lblByteLimit);
 			this.Controls.Add(this.lblTotalBytes);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.btnClearTutorial);
 			this.Controls.Add(this.btnReset);
 			this.Controls.Add(this.btnResetAll);
 			this.Controls.Add(this.comboSection);
@@ -368,6 +382,7 @@
 		private System.Windows.Forms.Label lblByteLimit;
 		private System.Windows.Forms.ToolStripMenuItem importFromCSVToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog saveFD;
+		private System.Windows.Forms.Button btnClearTutorial;
 	}
 }
 

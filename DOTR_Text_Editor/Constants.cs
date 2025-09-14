@@ -31,7 +31,7 @@ namespace DOTR_Text_Editor
 		// start of offset for index 30
 		public static int FirstEnglishOffset = 540;
 
-
+        public static int TutorialIndexStart = 2524;
 
 	}
 }

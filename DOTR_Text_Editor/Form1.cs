@@ -417,6 +417,18 @@ namespace DOTR_Text_Editor
 			}
         }
 
+		private void btnClearTutorial_Click(object sender, EventArgs e)
+		{
+			if (FileLoaded)
+			{
+				for (int i = Constants.TutorialIndexStart; i < CurrentStrings.Count; i++)
+					CurrentStrings[i] = ".";
+
+				FileEdited = true;
+				MessageBox.Show("Tutorial Strings Cleared!");
+			}
+		}
+
 
 	}
 }
