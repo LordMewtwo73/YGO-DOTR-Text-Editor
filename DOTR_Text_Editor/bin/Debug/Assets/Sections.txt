@@ -1,0 +1,18 @@
+0030 - Card Types
+0037 - Monster Types
+0059 - Attributes
+0071 - Terrain
+0082 - Leader Ranks
+0097 - Leader Abilities
+0114 - Misc Text
+0196 - Character Names
+0218 - Locations
+0244 - Misc Text
+0320 - Card Names
+1174 - Card Abilities
+2028 - Intro Dialogue
+2182 - Enemy Dialogue (Red)
+2334 - Intro Dialogue (White)
+2357 - Enemy Dialogue (White)
+2482 - Memory Card Stuff
+2524 - Tutorial
