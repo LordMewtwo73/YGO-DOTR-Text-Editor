@@ -4,7 +4,7 @@ Requires Yu-Gi-Oh! The Duelists of the Roses NTSC-U / USA.
 
 Overwrites ISO, so make copies before opening!
 
-Front UI:
+Either scroll through indexes or use the dropdowns to jump to specific sections of the game text:
 <img width="679" height="616" alt="image" src="https://github.com/user-attachments/assets/42da7d0d-6338-4881-9095-b7cc5a08b80c" />
 
 Screenshot from game with ability text added to a card without an original ability:
