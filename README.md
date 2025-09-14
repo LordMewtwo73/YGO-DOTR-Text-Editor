@@ -12,7 +12,7 @@ How to use:
 - You can export game text to a tab-delimited .csv file for easier mass editing with "Export to CSV" on the top menu bar. After making changes to the CSV, re-import it with "Import from CSV".
 - "Save to ISO" will compile and compress all text and check the size of the result. If it fits in the ISO, it will save to the opened ISO. If it is too large, it will show a warning and will not save.
 
-Front UI screenshot:
+
 <img width="679" height="616" alt="image" src="https://github.com/user-attachments/assets/42da7d0d-6338-4881-9095-b7cc5a08b80c" />
 
 Screenshot from game with ability text added to a card without an original ability:
