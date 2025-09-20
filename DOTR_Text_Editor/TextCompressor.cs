@@ -165,8 +165,30 @@ namespace DOTR_Text_Editor
 					int currindex = i;
 					int currvalue = foundchars[i][j];
 
+					int trueoffset = 0;
+					for (int k = 0; k < foundchars[i][j]; k++)
+					{
+						if (inthis[k] >= '\uE000' & inthis[k] < '\uFF00')
+							trueoffset += 2;
+						else
+							trueoffset++;
+					}
+					// offset is saved with 7 bits, so cannot be greater than 127
+					if (trueoffset > 127)
+						continue;
+
+
+					int truelength = 0;
 					while (true)
 					{
+						if (inthis[currvalue] >= '\uE000' & inthis[currvalue] < '\uFF00')
+							truelength += 2;
+						else
+							truelength++;
+						// length is saved with 6 bits, so cannot be greater than 63
+						if (trueoffset >= 62)
+							break;
+
 						if (currindex + 1 < foundchars.Count)
 						{
 							if (NextInt(foundchars[currindex + 1], currvalue))
@@ -212,7 +234,7 @@ namespace DOTR_Text_Editor
 			List<char> keychars = new List<char>(PointerDictionary.Keys);
 			for (int i = 0; i < keychars.Count; i++)
 			{
-				if (keychars[i] == modStrings[157][0])
+				if (modStrings[2182].Contains(keychars[i]))
 				{ }
 				Pointer2 point = PointerDictionary[keychars[i]];
 				int len = point.Length;
@@ -241,7 +263,7 @@ namespace DOTR_Text_Editor
 		private static void DefaultCharByteDictionary()
 		{
 			CharByteDictionary = new Dictionary<char, byte[]> {
-				{ '\n', new byte[2] { 0x00, 0x00 } }, { '\uFFF2', new byte[2] { 0x00, 0x00 } }, { '@', new byte[2] { 0x00, 0x01 } }, { ',', new byte[2] { 0x00, 0x02 } }, { '\u25CF', new byte[2] { 0x00, 0x03 } },
+				{ '\n', new byte[2] { 0x00, 0x00 } }, { '\uFFF2', new byte[2] { 0x00, 0x01 } }, { '@', new byte[2] { 0x00, 0x01 } }, { ',', new byte[2] { 0x00, 0x02 } }, { '\u25CF', new byte[2] { 0x00, 0x03 } },
 				{ '~', new byte[2] { 0x00, 0x1E } },{ '\uFF3B', new byte[2] { 0x00, 0x1F } },{ '\uFF3D', new byte[2] { 0x00, 0x20 } }, { '\uFF08', new byte[2] { 0x00, 0x3B } },
 				{ '\uFF09', new byte[2] { 0x00, 0x3C } }, { '\uFF10', new byte[2] { 0x00, 0x46 } }, { '\uFF01', new byte[2] { 0x00, 0x47 } }, { '\uFF02', new byte[2] { 0x00, 0x48 } },
 				{ '\uFF03', new byte[2] { 0x00, 0x49 } }, { '\uFF04', new byte[2] { 0x00, 0x4A } }, { '\uFF05', new byte[2] { 0x00, 0x4B } }, { '\uFF06', new byte[2] { 0x00, 0x4C } },

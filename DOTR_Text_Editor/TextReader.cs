@@ -184,7 +184,7 @@ namespace DOTR_Text_Editor
 
 		private static List<List<int>> ReadString(List<int> offsets, List<ushort> blob, int index)
 		{
-			if (index == 38)
+			if (index == 2182)
 			{ int stop = 0; }
 
 			int blobIndex = offsets[index];
