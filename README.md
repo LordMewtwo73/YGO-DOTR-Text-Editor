@@ -9,7 +9,7 @@ How to use:
 - Either scroll through indexes or use the dropdowns to jump to specific sections of the game text and make desired edits.
 - The "Clear Tutorial Strings" button removes all tutorial text, giving you a lot more space for adding text elsewhere.
 - The "Reset" button resets the current viewed text to the initial value read from the ISO. The "Reset All" button will undo all changes you've made so far on all text.
-- You can export game text to a tab-delimited .csv file for easier mass editing with "Export to CSV" on the top menu bar. After making changes to the CSV, re-import it with "Import from CSV".
+- You can export game text to a tab-delimited .tsv file for easier mass editing with "Export to TSV" on the top menu bar. After making changes to the TSV, re-import it with "Import from TSSV".
 - "Save to ISO" will compile and compress all text and check the size of the result. If it fits in the ISO, it will save to the opened ISO. If it is too large, it will show a warning and will not save.
 
 
@@ -18,5 +18,5 @@ How to use:
 Screenshot from game with ability text added to a card without an original ability:
 <img width="833" height="626" alt="image" src="https://github.com/user-attachments/assets/12778d64-e42d-4d23-9baf-f6772ce64857" />
 
-Screenshot of exported .CSV file:
+Screenshot of exported .TSV file:
 <img width="463" height="683" alt="image" src="https://github.com/user-attachments/assets/cc865237-e828-4be5-aea4-744ea572a938" />
