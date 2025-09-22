@@ -59,7 +59,7 @@ namespace DOTR_Text_Editor
 		private static void InitGameChars()
 		{
 			GameChars = new Dictionary<int, char> {
-				{ 0x00, '\n' }, { 0x01, '\uFFF2' }, //PLAYER_NAME_CHAR
+				{ 0x00, '\n' }, { 0x01, '\uFFF2' }, //PNAME_CHAR
 				{ 0x02, ',' }, { 0x03, '\u25CF' },
 				{ 0x1E, '~' }, { 0x1F, '\uFF3B' }, { 0x20, '\uFF3D' }, { 0x3B, '\uFF08' },
 				{ 0x3C, '\uFF09' }, { 0x46, '\uFF11' }, { 0x47, '\uFF01' }, { 0x48, '\uFF02' },

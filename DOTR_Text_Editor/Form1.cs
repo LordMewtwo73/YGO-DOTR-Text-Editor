@@ -106,62 +106,70 @@ namespace DOTR_Text_Editor
 			}
 
 			int sectionoffset = 0;
-			for (int i = 0; i < SectionIndexes.Count; i++)
-			{
-				if ((int)numIndex.Value < SectionIndexes[i])
-				{
-					if (i != 0)
-						sectionoffset = (int)numIndex.Value - SectionIndexes[i - 1];
+			comboSection.SelectedIndex = GetSectionIndex((int)numIndex.Value);
+			if(comboSection.SelectedIndex != -1)
+				sectionoffset = (int)numIndex.Value - SectionIndexes[comboSection.SelectedIndex];
 
-					comboSection.SelectedIndex = i - 1;
-					break;
-				}
-				else if (i == SectionIndexes.Count - 1)
-				{
-					int ind = comboSection.Items.Count - 1;
-					comboSection.SelectedIndex = ind;
-					sectionoffset = (int)numIndex.Value - SectionIndexes[ind];
-				}
-			}
 
 			if (comboSection.SelectedIndex == -1)
 				txtTitle.Text = "Misc Game Text - Do Not Edit";
 			else
 			{
-				string title = SectionNames[comboSection.SelectedIndex];
+				txtTitle.Text = GetTitle(comboSection.SelectedIndex, sectionoffset);
 
-
-				if (title.ToLower().Contains("card names"))
+				if (txtTitle.Text.ToLower().Contains("card names"))
 					comboCardName.SelectedIndex = sectionoffset;
 				else
 					comboCardName.SelectedIndex = -1;
 
 
-				if (title.ToLower().Contains("card abilities"))
+				if (txtTitle.Text.ToLower().Contains("card abilities"))
 					comboCardAbility.SelectedIndex = sectionoffset;
 				else
 					comboCardAbility.SelectedIndex = -1;
-
-
-				if (title.ToLower().Contains("character names"))
-					txtTitle.Text = title + " - " + CharacterNames[sectionoffset];
-				else if (title.ToLower().Contains("locations"))
-					txtTitle.Text = title + " - " + LocationNames[sectionoffset];
-				else if (title.ToLower().Contains("card names") | title.ToLower().Contains("card abilities"))
-					txtTitle.Text = title + " - " + CardNames[sectionoffset];
-				else
-					txtTitle.Text = title + " (" + sectionoffset.ToString() + ")";
-
 			}
 
 			isUpdating = false;
+		}
+
+		private int GetSectionIndex(int index)
+		{
+			for (int i = 0; i < SectionIndexes.Count; i++)
+			{
+				if (index < SectionIndexes[i])
+				{
+					return i - 1;
+				}
+				else if (i == SectionIndexes.Count - 1)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+
+		private string GetTitle(int sectionindex, int sectionoffset)
+		{
+			string title = SectionNames[sectionindex].Split('-')[1];
+
+			if (title.ToLower().Contains("character names"))
+				title += " - " + CharacterNames[sectionoffset];
+			else if (title.ToLower().Contains("locations"))
+				title += " - " + LocationNames[sectionoffset];
+			else if (title.ToLower().Contains("card names") | title.ToLower().Contains("card abilities"))
+				title += " - " + CardNames[sectionoffset];
+			else
+				title += " (" + sectionoffset.ToString() + ")";
+
+			return title;
 		}
 
 		private string ReplacePlaceholderChars(string input)
 		{
 			string output = input;
 
-			output = output.Replace("\uFFF2", "{PLAYER_NAME_CHAR}");
+			output = output.Replace("\uFFF2", "{PNAME_CHAR}");
 			output = output.Replace("\uFFF3", "{III}");
 			output = output.Replace("\uFFF1", System.Environment.NewLine);
 
@@ -175,7 +183,7 @@ namespace DOTR_Text_Editor
 			if (output == "")
 				output = "~";
 
-			output = output.Replace("{PLAYER_NAME_CHAR}", '\uFFF2'.ToString());
+			output = output.Replace("{PNAME_CHAR}", '\uFFF2'.ToString());
 			output = output.Replace("{III}", '\uFFF3'.ToString());
 			output = output.Replace(System.Environment.NewLine, '\uFFF1'.ToString());
 
@@ -208,12 +216,12 @@ namespace DOTR_Text_Editor
 
 		private void openISOToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            if (openFD.ShowDialog() == DialogResult.OK)
+            if (openISOFD.ShowDialog() == DialogResult.OK)
             {
-				if (openFD.FileName.ToLower().EndsWith(".iso"))
+				if (openISOFD.FileName.ToLower().EndsWith(".iso"))
 				{
-					loadedfile = openFD.FileName;
-					lblFilePath.Text = openFD.FileName;
+					loadedfile = openISOFD.FileName;
+					lblFilePath.Text = openISOFD.FileName;
 
 					TextReader.Load(this.loadedfile);
 				}
@@ -351,15 +359,18 @@ namespace DOTR_Text_Editor
 					{
 						if (isEditableIndex(i))
 						{
+							int sectionindex = GetSectionIndex(i);
+							string title = GetTitle(sectionindex, i- SectionIndexes[sectionindex]);
+
 							string outstring = ReplacePlaceholderChars(CurrentStrings[i]);
 							string[] split = outstring.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 							foreach (string s in split)
-								writer.WriteLine(i.ToString() + "\t" + s);
+								writer.WriteLine(i.ToString() + "\t" + s + "\t" + title);
 						}
 					}
 					writer.Close();
 
-					MessageBox.Show("CSV Exported!");
+					MessageBox.Show("TSV Exported!");
 				}
 			}
 			else
@@ -370,12 +381,13 @@ namespace DOTR_Text_Editor
 		{
 			if (FileLoaded)
 			{
-				if (openFD.ShowDialog() == DialogResult.OK)
+				if (openTSVFD.ShowDialog() == DialogResult.OK)
 				{
-					StreamReader reader = new StreamReader(openFD.FileName);
+					StreamReader reader = new StreamReader(openTSVFD.FileName);
 					string[] allstrings = reader.ReadToEnd().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                    reader.Close();
 
-					int index = 0;
+                    int index = 0;
 					string savestring = "";
 					foreach (string s in allstrings)
 					{
@@ -395,9 +407,8 @@ namespace DOTR_Text_Editor
 							}
 						}
 					}
-					reader.Close();
 
-					MessageBox.Show("CSV Imported!");
+					MessageBox.Show("TSV Imported!");
 					FileEdited = true;
 				}
 			}

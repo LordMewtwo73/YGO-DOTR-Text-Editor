@@ -26,8 +26,14 @@ namespace DOTR_Text_Editor
 
 		public static void Initialize(List<string> allStrings)
 		{
-			PointerList = new List<Pointer2>();
 			modStrings = new List<string>();
+			PointerList = new List<Pointer2>();
+			ReplacedStrings = new Dictionary<char, string>();
+			PointerDictionary = new Dictionary<char, Pointer2>();
+			Offsets = new List<int>();
+			IndexCompleted = 0;
+			OffsetBytes = new List<byte>();
+			StringBytes = new List<byte>();
 
 			for (int str = 0; str < allStrings.Count; str++)
 			{
